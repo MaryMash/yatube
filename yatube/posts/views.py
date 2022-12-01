@@ -38,12 +38,10 @@ def profile(request, username):
     page_obj = paginate_page(request, posts)
     user = request.user
     author = User.objects.get(username=username)
+    following = False
     if request.user.is_authenticated:
         following = Follow.objects.filter(user=user, author=author).exists()
-    else:
-        following = False
     context = {'author': author,
-               'posts': posts,
                'page_obj': page_obj,
                'following': following
                }
@@ -53,13 +51,11 @@ def profile(request, username):
 def post_detail(request, post_id):
     template = 'posts/post_detail.html'
     post = get_object_or_404(Post, pk=post_id)
-    posts_count = Post.objects.filter(author=post.author).count()
     form = CommentForm(request.POST or None)
     comments = Comment.objects.filter(post_id=post_id)
     context = {'post': post,
-               'posts_count': posts_count,
                'form': form,
-               'comments': comments
+               'comments': comments,
                }
     return render(request, template, context)
 
@@ -125,7 +121,6 @@ def add_comment(request, post_id):
 
 @login_required
 def follow_index(request):
-    # posts = request.user.posts.all()
     posts = Post.objects.filter(author__following__user=request.user)
     page_obj = paginate_page(request, posts)
     context = {'page_obj': page_obj}

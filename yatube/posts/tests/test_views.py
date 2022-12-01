@@ -175,11 +175,11 @@ class PostPagesTest(TestCase):
         resp_prf = self.authorized_client.get(reverse(
                                               'posts:profile',
                                               kwargs={'username': 'TestUser'}))
-        post_text_profile = resp_prf.context['posts'][2].text
+        post_text_prf = resp_prf.context['post'].author.posts.get(id=11).text
         post_11 = Post.objects.get(id=11)
         self.assertEqual(post_text_main, post_11.text)
         self.assertEqual(post_text_group, post_11.text)
-        self.assertEqual(post_text_profile, post_11.text)
+        self.assertEqual(post_text_prf, post_11.text)
 
     def test_post_is_in_correct_group(self):
         """Пост не попал в группу, для которой не был предназначен"""
