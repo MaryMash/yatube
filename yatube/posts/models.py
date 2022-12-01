@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from .constants import TEXT_LEN
 
 
 User = get_user_model()
@@ -63,7 +64,7 @@ class Post(models.Model):
         ordering = ('-pub_date',)
 
     def __str__(self) -> str:
-        return self.text[:15]
+        return self.text[:TEXT_LEN]
 
 
 class Comment(models.Model):
@@ -96,7 +97,7 @@ class Comment(models.Model):
         ordering = ('-created',)
 
     def __str__(self) -> str:
-        return self.text[:15]
+        return self.text[:TEXT_LEN]
 
 
 class Follow(models.Model):
