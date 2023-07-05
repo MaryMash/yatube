@@ -4,15 +4,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = 'w=(hsrhz-59z%+v1pbn6p2z4_lp7o=57nyecs-9w=msnh^1g&+'
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '[::1]',
-    'testserver',
-    'www.mariagrigoryeva.pythonanywhere.com',
-    'mariagrigoryeva.pythonanywhere.com',
+    'testserver'
 ]
 
 INSTALLED_APPS = [
