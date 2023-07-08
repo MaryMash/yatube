@@ -6,12 +6,7 @@ SECRET_KEY = 'w=(hsrhz-59z%+v1pbn6p2z4_lp7o=57nyecs-9w=msnh^1g&+'
 
 DEBUG = False
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '[::1]',
-    'testserver'
-]
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'posts.apps.PostsConfig',
@@ -58,8 +53,6 @@ TEMPLATES = [
     },
 ]
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
 WSGI_APPLICATION = 'yatube.wsgi.application'
 
 DATABASES = {
@@ -95,6 +88,8 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 LOGIN_URL = 'users:login'
 
